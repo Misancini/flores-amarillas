@@ -48,19 +48,17 @@ body {
     margin-bottom: 10px;
 }
 
+/* BOTONES */
+
 button {
     margin-top: 30px;
     padding: 15px 30px;
-
     border: none;
     border-radius: 40px;
-
     background: #ffd900;
     color: #3d3000;
-
     font-size: 18px;
     font-weight: bold;
-
     cursor: pointer;
 
     box-shadow:
@@ -114,8 +112,18 @@ button:hover {
     position: relative;
     width: 90px;
     height: 310px;
-    animation: moverFlor 3s ease-in-out infinite alternate;
+
+    transform-origin: bottom center;
+
+    opacity: 0;
+    transform: scaleY(0);
+
+    animation:
+        crecerFlor 1.8s ease forwards,
+        moverFlor 3s ease-in-out infinite alternate;
 }
+
+/* TALLO */
 
 .tallo {
     width: 7px;
@@ -132,18 +140,16 @@ button:hover {
     left: 50%;
 
     transform: translateX(-50%);
-
     border-radius: 10px;
 }
+
+/* HOJAS */
 
 .hoja {
     width: 45px;
     height: 22px;
-
     background: #22c55e;
-
     position: absolute;
-
     border-radius: 100% 0 100% 0;
 }
 
@@ -165,10 +171,8 @@ button:hover {
     position: absolute;
     top: 5px;
     left: 50%;
-
     width: 90px;
     height: 90px;
-
     transform: translateX(-50%);
 }
 
@@ -218,15 +222,10 @@ button:hover {
 
 .mensaje-final {
     max-width: 700px;
-
     margin: 40px auto 0;
-
     padding: 30px;
-
     border-radius: 25px;
-
     background: rgba(255, 255, 255, 0.08);
-
     backdrop-filter: blur(5px);
 
     box-shadow:
@@ -245,17 +244,131 @@ button:hover {
     font-weight: bold;
 }
 
+/* PÉTALOS CAYENDO */
+
+.petalo-cayendo {
+    position: fixed;
+
+    top: -50px;
+
+    z-index: 30;
+
+    font-size: 24px;
+
+    pointer-events: none;
+
+    animation: caerPetalo linear forwards;
+}
+
+/* BOTÓN CARTA */
+
+#botonCarta {
+    margin-top: 35px;
+    background: #fff4b0;
+    color: #4a3700;
+}
+
+/* CARTA */
+
+.carta {
+    display: none;
+
+    max-width: 750px;
+
+    margin: 35px auto;
+
+    padding: 35px;
+
+    background: #fff8dc;
+
+    color: #493a18;
+
+    border-radius: 20px;
+
+    text-align: left;
+
+    box-shadow:
+        0 0 35px rgba(255, 217, 0, 0.3);
+
+    animation: abrirCarta 1s ease;
+}
+
+.carta.mostrar {
+    display: block;
+}
+
+.carta h3 {
+    text-align: center;
+    color: #9a7300;
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.carta p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+/* BOTÓN SECRETO */
+
+#botonSecreto {
+    display: none;
+
+    margin: 30px auto;
+
+    background: #1e293b;
+
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.1);
+}
+
+#botonSecreto.mostrar {
+    display: block;
+}
+
+/* MENSAJE SECRETO */
+
+.mensaje-secreto {
+    display: none;
+
+    max-width: 600px;
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 217, 0, 0.15);
+
+    color: white;
+
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    box-shadow:
+        0 0 30px rgba(255, 217, 0, 0.25);
+
+    animation: aparecer 1s ease;
+}
+
+.mensaje-secreto.mostrar {
+    display: block;
+}
+
 /* CORAZONES */
 
 .corazon {
     position: fixed;
-
     bottom: -40px;
-
     font-size: 25px;
-
     z-index: 50;
-
     animation: subir 5s linear forwards;
 }
 
@@ -274,31 +387,91 @@ button:hover {
     }
 }
 
+@keyframes crecerFlor {
+
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
 @keyframes moverFlor {
 
     from {
-        transform: rotate(-2deg);
+        rotate: -2deg;
     }
 
     to {
-        transform: rotate(2deg);
+        rotate: 2deg;
+    }
+}
+
+@keyframes caerPetalo {
+
+    0% {
+        transform:
+            translateY(-50px)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            translateX(100px)
+            rotate(720deg);
+
+        opacity: 0.3;
     }
 }
 
 @keyframes subir {
 
     from {
-        transform: translateY(0) scale(0.7);
+        transform:
+            translateY(0)
+            scale(0.7);
+
         opacity: 1;
     }
 
     to {
-        transform: translateY(-110vh) scale(1.4);
+        transform:
+            translateY(-110vh)
+            scale(1.4);
+
         opacity: 0;
     }
 }
 
-/* TELÉFONO */
+@keyframes abrirCarta {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(30px)
+            scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* CELULAR */
 
 @media (max-width: 600px) {
 
@@ -307,11 +480,19 @@ button:hover {
     }
 
     .flor {
-        transform: scale(0.8);
-        margin: -8px;
+        width: 75px;
+        margin: -5px;
     }
 
     .mensaje-final {
         padding: 22px;
+    }
+
+    .carta {
+        padding: 25px 20px;
+    }
+
+    .carta p {
+        font-size: 16px;
     }
 }
