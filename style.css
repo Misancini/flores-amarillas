@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(
+        to bottom,
+        #07182c,
+        #0b2840,
+        #123524
+    );
+    color: white;
+}
+
+/* PANTALLA INICIAL */
+
+.inicio {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.inicio h1 {
+    font-size: clamp(42px, 9vw, 80px);
+    color: #ffd900;
+    margin-bottom: 25px;
+
+    text-shadow:
+        0 0 10px #ffd900,
+        0 0 25px rgba(255, 217, 0, 0.5);
+}
+
+.inicio p {
+    font-size: clamp(18px, 4vw, 24px);
+    max-width: 650px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 30px;
+    padding: 15px 30px;
+
+    border: none;
+    border-radius: 40px;
+
+    background: #ffd900;
+    color: #3d3000;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px rgba(255, 217, 0, 0.45);
+
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+/* SORPRESA */
+
+.sorpresa {
+    display: none;
+    min-height: 100vh;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.sorpresa.mostrar {
+    display: block;
+    animation: aparecer 1.5s ease;
+}
+
+.sorpresa h2 {
+    color: #ffdd00;
+    font-size: clamp(32px, 7vw, 60px);
+    margin-bottom: 40px;
+
+    text-shadow:
+        0 0 10px rgba(255, 221, 0, 0.7);
+}
+
+/* JARDÍN */
+
+.jardin {
+    min-height: 420px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    flex-wrap: wrap;
+    padding-top: 60px;
+}
+
+.flor {
+    position: relative;
+    width: 90px;
+    height: 310px;
+    animation: moverFlor 3s ease-in-out infinite alternate;
+}
+
+.tallo {
+    width: 7px;
+    height: 220px;
+
+    background: linear-gradient(
+        to right,
+        #166534,
+        #22c55e
+    );
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 10px;
+}
+
+.hoja {
+    width: 45px;
+    height: 22px;
+
+    background: #22c55e;
+
+    position: absolute;
+
+    border-radius: 100% 0 100% 0;
+}
+
+.hoja-izquierda {
+    bottom: 90px;
+    left: 5px;
+    transform: rotate(-30deg);
+}
+
+.hoja-derecha {
+    bottom: 130px;
+    right: 5px;
+    transform: rotate(30deg) scaleX(-1);
+}
+
+/* CABEZA DE LA FLOR */
+
+.cabeza {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+
+    width: 90px;
+    height: 90px;
+
+    transform: translateX(-50%);
+}
+
+.petalo {
+    width: 32px;
+    height: 48px;
+
+    background: linear-gradient(
+        #fff300,
+        #ffc800
+    );
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    left: 29px;
+    top: 0;
+
+    transform-origin: 16px 45px;
+
+    box-shadow:
+        0 0 10px rgba(255, 217, 0, 0.4);
+}
+
+.centro {
+    width: 40px;
+    height: 40px;
+
+    background: radial-gradient(
+        circle,
+        #7c4a00,
+        #4d2c00
+    );
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+
+    z-index: 3;
+}
+
+/* MENSAJE FINAL */
+
+.mensaje-final {
+    max-width: 700px;
+
+    margin: 40px auto 0;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 0 20px rgba(255, 217, 0, 0.1);
+}
+
+.mensaje-final p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.firma {
+    color: #ffd900;
+    font-size: 22px !important;
+    font-weight: bold;
+}
+
+/* CORAZONES */
+
+.corazon {
+    position: fixed;
+
+    bottom: -40px;
+
+    font-size: 25px;
+
+    z-index: 50;
+
+    animation: subir 5s linear forwards;
+}
+
+/* ANIMACIONES */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes moverFlor {
+
+    from {
+        transform: rotate(-2deg);
+    }
+
+    to {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes subir {
+
+    from {
+        transform: translateY(0) scale(0.7);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-110vh) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* TELÉFONO */
+
+@media (max-width: 600px) {
+
+    .jardin {
+        gap: 0;
+    }
+
+    .flor {
+        transform: scale(0.8);
+        margin: -8px;
+    }
+
+    .mensaje-final {
+        padding: 22px;
+    }
+}
